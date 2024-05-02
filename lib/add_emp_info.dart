@@ -35,7 +35,14 @@ class _AddInfoState extends State<Add_info> {
                   width: 300,
                   height: 50,
                   margin: EdgeInsets.all(25),
-                  child: Text('아무개', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white), textAlign: TextAlign.center,),
+                  child: TextField(
+                    style: TextStyle(color: Colors.white70),
+                    decoration: InputDecoration(
+                      hintText: '이름을 입력하세요.',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.text,
+                  ),
                 ),
                 Container(
                   alignment: Alignment.center,
@@ -43,7 +50,14 @@ class _AddInfoState extends State<Add_info> {
                   width: 300,
                   height: 50,
                   margin: EdgeInsets.all(25),
-                  child: Text('21세', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white), textAlign: TextAlign.center),
+                  child: TextField(
+                    style: TextStyle(color: Colors.white70),
+                    decoration: InputDecoration(
+                      hintText: '나이를 입력하세요.',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.number,
+                  ),
                 ),
                 Container(
                   alignment: Alignment.center,
@@ -51,7 +65,14 @@ class _AddInfoState extends State<Add_info> {
                   width: 300,
                   height: 50,
                   margin: EdgeInsets.all(25),
-                  child: Text('2024-05-01', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white), textAlign: TextAlign.center),
+                  child: TextField(
+                    style: TextStyle(color: Colors.white70),
+                    decoration: InputDecoration(
+                      hintText: '근무 시작 날짜를 입력하세요.',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.datetime,
+                  ),
                 ),
                 Container(
                   alignment: Alignment.center,
@@ -59,7 +80,21 @@ class _AddInfoState extends State<Add_info> {
                   width: 300,
                   height: 50,
                   margin: EdgeInsets.all(25),
-                  child: Text('12000원', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white), textAlign: TextAlign.center),
+                  child: TextField(
+                    style: TextStyle(color: Colors.white70),
+                    decoration: InputDecoration(
+                      hintText: '시급을 입력하세요.',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.number,
+                  ),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      //if button clicks,
+                      print("pressed");
+                    },
+                    child: Text('등록'),
                 ),
               ],
           ),
