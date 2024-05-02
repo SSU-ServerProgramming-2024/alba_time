@@ -26,7 +26,7 @@ class _LogInState extends State<LoginPage> {
               child: Theme(
                 data: ThemeData(
                     primaryColor: Colors.grey,
-                    inputDecorationTheme: InputDecorationTheme(
+                    inputDecorationTheme: const InputDecorationTheme(
                         labelStyle: TextStyle(color: Colors.teal, fontSize: 15.0))),
                 child: Container(
                     padding: EdgeInsets.all(40.0),
@@ -45,21 +45,21 @@ class _LogInState extends State<LoginPage> {
                             keyboardType: TextInputType.text,
                             obscureText: true, // 비밀번호 안보이도록 하는 것
                           ),
-                          SizedBox(height: 40.0,),
+                          const SizedBox(height: 40.0,),
                           ButtonTheme(
                               minWidth: 100.0,
                               height: 50.0,
                               child: ElevatedButton(
                                 onPressed: (){
-
+                                  Navigator.of(context).pushNamed('/timetable');
                                 },
-                                child: Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                  size: 35.0,
-                                ),
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.orangeAccent
+                                ),
+                                child: const Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                  size: 35.0
                                 ),
                               )
                           )
