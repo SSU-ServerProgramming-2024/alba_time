@@ -10,14 +10,14 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: const Text('Profile'),
         elevation: 0.0,
         backgroundColor: Colors.redAccent,
         centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
-        actions: <Widget>[
-          IconButton(icon: Icon(Icons.search), onPressed: () {})
-        ],
+        //leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+        //actions: <Widget>[
+        //  IconButton(icon: Icon(Icons.search), onPressed: () {})
+        //],
       ),
       body: Column(
         children: <Widget>[

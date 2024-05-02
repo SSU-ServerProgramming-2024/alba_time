@@ -38,7 +38,9 @@ class _TimeTablePageState extends State<TimeTablePage> {
         centerTitle: true,
         //leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.person), onPressed: () {})
+          IconButton(icon: Icon(Icons.person), onPressed: () {
+            Navigator.of(context).pushNamed('/profile');
+          })
         ],
       ),
       body: Column(
@@ -62,7 +64,9 @@ class _TimeTablePageState extends State<TimeTablePage> {
                 )
               )
           ),
-          ElevatedButton(
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+            child:ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.redAccent, //background color of button
                   side: BorderSide(width:3, color:Colors.brown), //border width and color
@@ -79,6 +83,7 @@ class _TimeTablePageState extends State<TimeTablePage> {
                   alignment: Alignment.center,
                   width: 200,
                   child: const Text('알바생 목록', style:TextStyle(fontSize: 18, color:Colors.white)))
+            )
           )
         ])
     );
