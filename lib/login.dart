@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
-class Login extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  State<Login> createState() => _LogInState();
+  State<LoginPage> createState() => _LogInState();
 }
 
-class _LogInState extends State<Login> {
+class _LogInState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Log in'),
+        title: const Text('Log in'),
         elevation: 0.0,
         backgroundColor: Colors.redAccent,
         centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
-        actions: <Widget>[
-          IconButton(icon: Icon(Icons.search), onPressed: () {})
-        ],
+        //leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+        //actions: <Widget>[
+        //  IconButton(icon: Icon(Icons.search), onPressed: () {})
+        //],
       ),
       body: Column(
         children: [
