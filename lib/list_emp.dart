@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ListEmp extends StatefulWidget {
+class ListEmpPage extends StatefulWidget {
   @override
-  State<ListEmp> createState() => _ListEmpState();
+  State<ListEmpPage> createState() => _ListEmpPageState();
 }
 
-class _ListEmpState extends State<ListEmp> {
+class _ListEmpPageState extends State<ListEmpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +33,7 @@ class _ListEmpState extends State<ListEmp> {
                 ElevatedButton(
                   onPressed: () {
                     // 버튼이 클릭되었을 때 수행할 작업
+                    Navigator.of(context).pushNamed('/modemp');
                   },
                   style: ButtonStyle(
                     minimumSize: MaterialStateProperty.all(Size(50, 50)), // 버튼의 최소 크기 지정

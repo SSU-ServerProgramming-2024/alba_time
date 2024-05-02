@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class WorkInfo extends StatefulWidget {
+class WorkInfoPage extends StatefulWidget {
   @override
-  State<WorkInfo> createState() => _WorkState();
+  State<WorkInfoPage> createState() => _WorkState();
 }
 
-class _WorkState extends State<WorkInfo> {
+class _WorkState extends State<WorkInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
-class ModInfo extends StatefulWidget {
+class ModInfoPage extends StatefulWidget {
   @override
-  State<ModInfo> createState() => _ModInfoState();
+  State<ModInfoPage> createState() => _ModInfoPageState();
 }
 
-class _ModInfoState extends State<ModInfo> {
+class _ModInfoPageState extends State<ModInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
