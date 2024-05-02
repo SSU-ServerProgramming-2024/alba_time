@@ -31,12 +31,12 @@ class _AddInfoState extends State<Add_info> {
                 const SizedBox(height: 30),
                 Container(
                   alignment: Alignment.center,
-                  color: Colors.redAccent,
+                  color: Colors.white12,
                   width: 300,
                   height: 50,
                   margin: EdgeInsets.all(25),
                   child: TextField(
-                    style: TextStyle(color: Colors.white70),
+                    style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
                       hintText: '이름을 입력하세요.',
                       border: OutlineInputBorder(),
@@ -46,12 +46,12 @@ class _AddInfoState extends State<Add_info> {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  color: Colors.redAccent,
+                  color: Colors.white12,
                   width: 300,
                   height: 50,
                   margin: EdgeInsets.all(25),
                   child: TextField(
-                    style: TextStyle(color: Colors.white70),
+                    style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
                       hintText: '나이를 입력하세요.',
                       border: OutlineInputBorder(),
@@ -61,12 +61,12 @@ class _AddInfoState extends State<Add_info> {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  color: Colors.redAccent,
+                  color: Colors.white12,
                   width: 300,
                   height: 50,
                   margin: EdgeInsets.all(25),
                   child: TextField(
-                    style: TextStyle(color: Colors.white70),
+                    style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
                       hintText: '근무 시작 날짜를 입력하세요.',
                       border: OutlineInputBorder(),
@@ -76,12 +76,12 @@ class _AddInfoState extends State<Add_info> {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  color: Colors.redAccent,
+                  color: Colors.white12,
                   width: 300,
                   height: 50,
                   margin: EdgeInsets.all(25),
                   child: TextField(
-                    style: TextStyle(color: Colors.white70),
+                    style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
                       hintText: '시급을 입력하세요.',
                       border: OutlineInputBorder(),
