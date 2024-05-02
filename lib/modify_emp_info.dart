@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
-class Mod_Info extends StatefulWidget {
+class ModInfo extends StatefulWidget {
   @override
-  State<Mod_Info> createState() => _ModInfoState();
+  State<ModInfo> createState() => _ModInfoState();
 }
 
-class _ModInfoState extends State<Mod_Info> {
+class _ModInfoState extends State<ModInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +57,7 @@ class _ModInfoState extends State<Mod_Info> {
                       BorderSide(color: Colors.black), // 테두리 색상
                     ),
                   ),
-                  child: Text('12000원'),
+                  child: Text('12000원', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
               ),
               SizedBox(height: 15),
@@ -66,6 +66,7 @@ class _ModInfoState extends State<Mod_Info> {
                 child: OutlinedButton(
                   onPressed: () {
                     // 버튼이 클릭되었을 때 수행할 작업
+                    Navigator.of(context).pushNamed('/workinfo');
                   },
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all<OutlinedBorder>(
@@ -77,7 +78,7 @@ class _ModInfoState extends State<Mod_Info> {
                       BorderSide(color: Colors.black), // 테두리 색상
                     ),
                   ),
-                  child: Text('총 근무 시간'),
+                  child: Text('총 근무 시간', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
               ),
               SizedBox(height: 15),
@@ -92,9 +93,9 @@ class _ModInfoState extends State<Mod_Info> {
                       },
                       child: Text('-'),
                     ),
-                    SizedBox(width: 85),
-                    Text('결근 횟수'),
-                    SizedBox(width: 85),
+                    SizedBox(width: 75),
+                    Text('결근 횟수', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    SizedBox(width: 75),
                     ElevatedButton(
                       onPressed: () {
                         // Handle button press
