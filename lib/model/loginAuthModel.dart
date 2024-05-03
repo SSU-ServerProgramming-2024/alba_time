@@ -10,7 +10,7 @@ class LoginAuthModel {
   factory LoginAuthModel.fromJson(Map<String, dynamic> json) {
     return LoginAuthModel(
       userId: json["user_id"],
-      bossNo: json["boss_no"],
+      bossNo: json["bossno"],
     );
   }
 }
