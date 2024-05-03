@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 //import 'package:simkb/Src/Utility/Tool.dart';
 
 import '../model/timeBlockModel.dart';
-import '../model/tableWeekView.dart';
+import 'tableWeekView.dart';
 
 class TimeTablePage extends StatefulWidget {
   const TimeTablePage({super.key});
