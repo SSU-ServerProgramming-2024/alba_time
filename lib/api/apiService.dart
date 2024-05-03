@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:http/http.dart' show Client;
+import 'package:http/http.dart' as http;
 import 'package:alba_time/model/loginAuthModel.dart';
 
 class Response {
@@ -10,12 +9,21 @@ class Response {
 }
 
 class ApiService {
-  final String baseUrl = "http://10.27.0.83:5000";
-  Client client = Client();
+  final String baseUrl = "http://10.29.118.167:5000";
 
   Future<Response?> loginAuth(String id, String password) async {
-    final uri = Uri.parse("$baseUrl/login");
-    final response = await client.get(uri);
+    final url = Uri.parse("$baseUrl/auth/login");
+
+    Map data = {"id": id, "password": password};
+    var body = json.encode(data);
+    final response = await http.post(
+        url,
+        headers: {"Content-Type": "application/json"},
+        body: body
+    ).timeout(
+      const Duration(seconds: 5)
+    );
+
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       return Response(response.statusCode, LoginAuthModel.fromJson(data));
@@ -23,43 +31,4 @@ class ApiService {
       return Response(response.statusCode, null);
     }
   }
-/*
-  Future<bool> createProfile(Profile data) async {
-    final response = await client.post(
-      "$baseUrl/api/profile",
-      headers: {"content-type": "application/json"},
-      body: profileToJson(data),
-    );
-    if (response.statusCode == 201) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  Future<bool> updateProfile(Profile data) async {
-    final response = await client.put(
-      "$baseUrl/api/profile/${data.id}",
-      headers: {"content-type": "application/json"},
-      body: profileToJson(data),
-    );
-    if (response.statusCode == 200) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  Future<bool> deleteProfile(int id) async {
-    final response = await client.delete(
-      "$baseUrl/api/profile/$id",
-      headers: {"content-type": "application/json"},
-    );
-    if (response.statusCode == 200) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-*/
 }
