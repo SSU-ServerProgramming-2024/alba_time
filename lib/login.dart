@@ -1,4 +1,6 @@
+import 'package:alba_time/provider/myProfileProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'api/apiService.dart';
 
@@ -13,11 +15,13 @@ class _LogInState extends State<LoginPage> {
   final idController = TextEditingController();
   final pwController = TextEditingController();
 
+  late MyProfileProvider _myProfileProvider;
 
   @override
   void initState() {
     super.initState();
     apiService = ApiService();
+    _myProfileProvider = Provider.of<MyProfileProvider>(context, listen: false);
   }
 
   @override
@@ -69,6 +73,7 @@ class _LogInState extends State<LoginPage> {
                                 onPressed: () async {
                                   final response = await apiService.loginAuth(idController.value.text, pwController.value.text);
                                   if (response?.statusCode == 200) {
+                                    _myProfileProvider.setUserId(response!.result.userId);
                                     Navigator.of(context).pushNamed('/timetable');
                                   }
                                 },

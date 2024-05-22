@@ -1,8 +1,10 @@
 import 'package:alba_time/profile.dart';
+import 'package:alba_time/provider/myProfileProvider.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
 import 'timeTable.dart';
 import 'package:calendar_view/calendar_view.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,9 +13,14 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return CalendarControllerProvider(
-        controller: EventController(),
+      controller: EventController(),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (BuildContext context) => MyProfileProvider(),
+          ),
+        ],
         child: MaterialApp(
           title: "Alba Time",
           initialRoute: '/login',
@@ -22,8 +29,9 @@ class MyApp extends StatelessWidget {
             '/timetable': (context) => const TimeTablePage(),
             '/profile': (context) => Profile(),
           },
-          home: LoginPage(),
-        )
+          home: LoginPage()
+        ),
+      ),
     );
   }
 }
