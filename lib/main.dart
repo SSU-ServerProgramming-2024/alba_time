@@ -1,8 +1,10 @@
 import 'package:alba_time/profile.dart';
 import 'package:alba_time/provider/myProfileProvider.dart';
 import 'package:flutter/material.dart';
+import 'add_emp_info.dart';
 import 'list_emp.dart';
 import 'login.dart';
+import 'modify_emp_info.dart';
 import 'timeTable.dart';
 import 'package:calendar_view/calendar_view.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +32,8 @@ class MyApp extends StatelessWidget {
             '/timetable': (context) => const TimeTablePage(),
             '/profile': (context) => Profile(),
             '/listemp': (context) => ListEmp(),
+            '/addinfopage': (context) => AddInfoPage(),
+            '/modinfopage': (context) => ModInfoPage()
           },
           home: LoginPage()
         ),

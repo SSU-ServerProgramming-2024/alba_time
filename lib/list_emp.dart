@@ -89,7 +89,7 @@ class _ListEmpState extends State<ListEmp> {
                       ),
                       //child: Text(employee['name'], style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black)),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                   ],
                 );
               },
@@ -98,8 +98,9 @@ class _ListEmpState extends State<ListEmp> {
               onPressed: () {
                 //if button clicks,
                 print("pressed");
+                Navigator.of(context).pushNamed('/addinfopage');
               },
-              child: Text('알바생 추가', style: TextStyle(color: Colors.black)),
+              child: const Text('알바생 추가', style: TextStyle(color: Colors.black)),
             ),
           ],
         ),
