@@ -73,4 +73,33 @@ class ApiService {
       return Response(response.statusCode, null);
     }
   }
+
+  Future<Response?> createWorker(int bossno, String? name, age) async {
+    final bossnostr = bossno.toString();
+    final url = Uri.parse("$baseUrl/auth/create?bossno=$bossnostr");
+
+    // Map을 동적으로 구성
+    Map<String, dynamic> data = {};
+    if (name != null && name.isNotEmpty) {
+      data['name'] = name;
+    }
+    if (age != null && age.isNotEmpty) {
+      data['age'] = age;
+    }
+
+    var body = json.encode(data);
+
+    final response = await http.post(
+      url,
+      headers: {"Content-Type": "application/json"},
+      body: body,
+    );
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      return Response(response.statusCode, data);
+    } else {
+      return Response(response.statusCode, null);
+    }
+  }
 }
