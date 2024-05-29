@@ -24,22 +24,26 @@ class _ListEmpState extends State<ListEmp> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       _myProfileProvider = Provider.of<MyProfileProvider>(context, listen: false);
 
-      final response = await apiService.getWorkerList(_myProfileProvider.getBossNo());
-      if (response?.statusCode == 200) {
-        setState(() {
-          emplist = response?.result;
-          print(emplist);
-        });
-
-      } else {
-        print(response?.statusCode);
-        print(response?.result);
-      }
+      _fetchEmployeeList();
     });
+  }
+
+  Future<void> _fetchEmployeeList() async {
+    final response = await apiService.getWorkerList(_myProfileProvider.getBossNo());
+    if (response?.statusCode == 200) {
+      setState(() {
+        emplist = response?.result;
+        print(emplist);
+      });
+    } else {
+      print(response?.statusCode);
+      print(response?.result);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text('아르바이트생 목록'),
@@ -95,10 +99,11 @@ class _ListEmpState extends State<ListEmp> {
               },
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 //if button clicks,
                 print("pressed");
-                Navigator.of(context).pushNamed('/addinfopage');
+                await Navigator.of(context).pushNamed('/addinfopage');
+                _fetchEmployeeList();
               },
               child: const Text('알바생 추가', style: TextStyle(color: Colors.black)),
             ),
