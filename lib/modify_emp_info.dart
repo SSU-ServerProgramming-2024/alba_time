@@ -13,7 +13,7 @@ class _ModInfoPageState extends State<ModInfoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('알바생 정보 수정'),
+        title: const Text('알바생 정보 수정'),
         elevation: 0.0,
         backgroundColor: Colors.teal.shade200,
         centerTitle: true,
@@ -78,7 +78,7 @@ class _ModInfoPageState extends State<ModInfoPage> {
                       BorderSide(color: Colors.black), // 테두리 색상
                     ),
                   ),
-                  child: Text('총 근무 시간', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  child: const Text('총 근무 시간', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
               ),
               SizedBox(height: 15),
@@ -91,11 +91,11 @@ class _ModInfoPageState extends State<ModInfoPage> {
                       onPressed: () {
                         // Handle button press
                       },
-                      child: Text('-'),
+                      child: const Text('-'),
                     ),
-                    SizedBox(width: 75),
-                    Text('결근 횟수', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                    SizedBox(width: 75),
+                    const SizedBox(width: 75),
+                    const Text('결근 횟수', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    const SizedBox(width: 75),
                     ElevatedButton(
                       onPressed: () {
                         // Handle button press
@@ -105,8 +105,8 @@ class _ModInfoPageState extends State<ModInfoPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 15),
-              SizedBox(
+              const SizedBox(height: 15),
+              const SizedBox(
                 child: TextField(
                   style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
@@ -116,18 +116,18 @@ class _ModInfoPageState extends State<ModInfoPage> {
                   keyboardType: TextInputType.multiline,
                 ),
               ),
-              SizedBox(height:10),
+              const SizedBox(height:10),
               Row(
                 children: <Widget>[
-                  SizedBox(width:120),
+                  const SizedBox(width:120),
                   ElevatedButton(
                     onPressed: () {
                       //if button clicks,
                       print("pressed");
                     },
-                    child: Text('review 등록'),
+                    child: const Text('review 등록'),
                   ),
-                  SizedBox(width:90),
+                  const SizedBox(width:90),
                 ],
               ),
 

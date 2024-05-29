@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             '/addinfopage': (context) => AddInfoPage(),
             '/modinfopage': (context) => ModInfoPage()
           },
-          home: LoginPage()
+          //home: LoginPage()
         ),
       ),
     );

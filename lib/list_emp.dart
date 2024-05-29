@@ -30,11 +30,36 @@ class _ListEmpState extends State<ListEmp> {
           emplist = response?.result;
           print(emplist);
         });
+
       } else {
         print(response?.statusCode);
         print(response?.result);
       }
     });
+  }
+
+  void _fetchEmployees() async {
+    _myProfileProvider = Provider.of<MyProfileProvider>(context, listen: false);
+    final response = await apiService.getWorkerList(_myProfileProvider.getBossNo());
+    if (response != null && response.statusCode == 200) {
+      setState(() {
+        emplist = response.result ?? [];
+      });
+    } else {
+      print('Failed to load employees: ${response?.result}');
+    }
+  }
+
+  void _deleteEmployee(String employeeId) async {
+    final response = await apiService.deleteEmployee(employeeId);
+    if (response.statusCode == 200) {
+      // 삭제 성공 후 목록 재로딩
+      _fetchEmployees();
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to delete employee: ${response.result}'))
+      );
+    }
   }
 
   @override
@@ -56,7 +81,6 @@ class _ListEmpState extends State<ListEmp> {
               physics: NeverScrollableScrollPhysics(),
               itemCount: emplist.length,
               itemBuilder: (context, index) {
-                final employee = emplist[index];
                 return Column(
                   children: [
                     ElevatedButton(
@@ -71,29 +95,11 @@ class _ListEmpState extends State<ListEmp> {
                         mainAxisSize: MainAxisSize.min, // Row의 크기를 내용물에 맞춤
                         children: <Widget>[
                           Spacer(),
-                          Text(employee['name'], style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black)),
+                          Text(emplist[index]['name'], style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black)),
                           Spacer(),// 텍스트와 아이콘 버튼 사이의 공간
                           ElevatedButton(
-                            onPressed: () async {
-                              final employeeId = employee['albano'].toString();
-                              final response1 = await apiService.deleteEmployee(employeeId);
-                              if (response1.statusCode == 200) {
-
-                                  final response2 = await apiService.getWorkerList(_myProfileProvider.getBossNo());
-                                  if (response2?.statusCode == 200) {
-                                    setState(() {
-                                      emplist = response2?.result;
-                                      print(emplist);
-                                    });
-                                  } else {
-                                    print('Failed to load employees: ${response2?.result}');
-                                  }
-
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text('Failed to delete employee: ${response1?.result}')),
-                                );
-                              }
+                            onPressed: (){
+                              _deleteEmployee(emplist[index]['albano'].toString());
                             },
                             style: ButtonStyle(
                               padding: MaterialStateProperty.all(EdgeInsets.all(0)), // 내부 여백 조절
@@ -112,10 +118,11 @@ class _ListEmpState extends State<ListEmp> {
               },
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 //if button clicks,
                 print("pressed");
-                Navigator.of(context).pushNamed('/addinfopage');
+                await Navigator.of(context).pushNamed('/addinfopage');
+                _fetchEmployees();
               },
               child: const Text('알바생 추가', style: TextStyle(color: Colors.black)),
             ),

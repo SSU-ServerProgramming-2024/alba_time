@@ -1,4 +1,9 @@
+import 'package:alba_time/provider/myProfileProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
+import 'api/apiService.dart';
 
 class AddInfoPage extends StatefulWidget {
   @override
@@ -6,18 +11,33 @@ class AddInfoPage extends StatefulWidget {
 }
 
 class _AddInfoPageState extends State<AddInfoPage> {
+  late ApiService apiService;
+  late MyProfileProvider _myProfileProvider;
+
+  final nameController = TextEditingController();
+  final ageController = TextEditingController();
+  final startDateController = TextEditingController();
+  final salaryController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    apiService = ApiService();
+    _myProfileProvider = Provider.of<MyProfileProvider>(context, listen: false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('add'),
+        title: const Text('아르바이트생 정보 추가'),
         elevation: 0.0,
         backgroundColor: Colors.teal.shade200,
         centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
-        actions: <Widget>[
-          IconButton(icon: Icon(Icons.search), onPressed: () {}),
-        ],
+        //leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+        //actions: <Widget>[
+        //  IconButton(icon: Icon(Icons.search), onPressed: () {}),
+        //],
       ),
       body: SingleChildScrollView(
         child: Row(
@@ -26,7 +46,7 @@ class _AddInfoPageState extends State<AddInfoPage> {
             Column(
               children: <Widget>[
                 const SizedBox(height: 80),
-                Text('아르바이트생 정보 입력', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                const Text('아르바이트생 정보 입력', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
 
                 const SizedBox(height: 30),
                 Container(
@@ -34,10 +54,11 @@ class _AddInfoPageState extends State<AddInfoPage> {
                   color: Colors.white12,
                   width: 300,
                   height: 50,
-                  margin: EdgeInsets.all(25),
+                  margin: const EdgeInsets.all(25),
                   child: TextField(
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
+                    controller: nameController,
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
                       hintText: '이름을 입력하세요.',
                       border: OutlineInputBorder(),
                     ),
@@ -49,10 +70,11 @@ class _AddInfoPageState extends State<AddInfoPage> {
                   color: Colors.white12,
                   width: 300,
                   height: 50,
-                  margin: EdgeInsets.all(25),
+                  margin: const EdgeInsets.all(25),
                   child: TextField(
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
+                    controller: ageController,
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
                       hintText: '나이를 입력하세요.',
                       border: OutlineInputBorder(),
                     ),
@@ -64,10 +86,11 @@ class _AddInfoPageState extends State<AddInfoPage> {
                   color: Colors.white12,
                   width: 300,
                   height: 50,
-                  margin: EdgeInsets.all(25),
+                  margin: const EdgeInsets.all(25),
                   child: TextField(
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
+                    controller: startDateController,
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
                       hintText: '근무 시작 날짜를 입력하세요.',
                       border: OutlineInputBorder(),
                     ),
@@ -79,10 +102,11 @@ class _AddInfoPageState extends State<AddInfoPage> {
                   color: Colors.white12,
                   width: 300,
                   height: 50,
-                  margin: EdgeInsets.all(25),
+                  margin: const EdgeInsets.all(25),
                   child: TextField(
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
+                    controller: salaryController,
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
                       hintText: '시급을 입력하세요.',
                       border: OutlineInputBorder(),
                     ),
@@ -90,11 +114,16 @@ class _AddInfoPageState extends State<AddInfoPage> {
                   ),
                 ),
                 ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       //if button clicks,
-                      print("pressed");
+                      final response = await apiService.createWorker(_myProfileProvider.getBossNo(), nameController.text, ageController.text, startDateController.text, salaryController.text);
+                      if (response?.statusCode == 200 || response?.statusCode == 201) {
+                        Navigator.pop(context);
+                      } else {
+                        print(response?.statusCode);
+                      }
                     },
-                    child: Text('등록'),
+                    child: const Text('등록'),
                 ),
               ],
           ),
