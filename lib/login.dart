@@ -55,13 +55,13 @@ class _LogInState extends State<LoginPage> {
                         children: [
                           TextField(
                             controller: idController,
-                            decoration: InputDecoration(labelText: '사용자 아이디'),
+                            decoration: const InputDecoration(labelText: '사용자 아이디'),
                             keyboardType: TextInputType.text,
                           ),
                           TextField(
                             controller: pwController,
                             decoration:
-                            InputDecoration(labelText: '사용자 비밀번호'),
+                            const InputDecoration(labelText: '사용자 비밀번호'),
                             keyboardType: TextInputType.visiblePassword,
                             obscureText: true, // 비밀번호 안보이도록 하는 것
                           ),

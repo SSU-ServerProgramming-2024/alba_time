@@ -74,9 +74,9 @@ class ApiService {
     }
   }
 
-  Future<Response?> createWorker(int bossno, String? name, age) async {
+  Future<Response?> createWorker(int bossno, String? name, age, startday, money) async {
     final bossnostr = bossno.toString();
-    final url = Uri.parse("$baseUrl/auth/create?bossno=$bossnostr");
+    final url = Uri.parse("$baseUrl/auth/create/$bossnostr");
 
     // Map을 동적으로 구성
     Map<String, dynamic> data = {};
@@ -85,6 +85,12 @@ class ApiService {
     }
     if (age != null && age.isNotEmpty) {
       data['age'] = age;
+    }
+    if (startday != null && startday.isNotEmpty) {
+      data['startday'] = startday;
+    }
+    if (money != null && money.isNotEmpty) {
+      data['money'] = money;
     }
 
     var body = json.encode(data);
