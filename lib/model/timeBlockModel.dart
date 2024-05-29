@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 class TimeBlockModel {
-  String? _userId;
+  String? _userName;
   String? _date;
   String? _weekDay;
   String? _startTime;
@@ -14,7 +14,7 @@ class TimeBlockModel {
         String? startTime,
         String? endTIme,}) {
     if (userName != null){
-      _userId = userName;
+      _userName = userName;
     }
     if (date != null) {
       _date = date;
@@ -27,8 +27,8 @@ class TimeBlockModel {
     }
   }
 
-  String? get userName => _userId;
-  set userId(String? userId) => _userId = userId;
+  String? get userName => _userName;
+  set userName(String? userName) => _userName = userName;
   String? get date => _date;
   set date(String? date) => _date = date;
   String? get weekDay => _weekDay;
@@ -39,7 +39,7 @@ class TimeBlockModel {
   set endTIme(String? endTIme) => _endTime = endTIme;
 
   TimeBlockModel.fromJson(Map<String, dynamic> json) {
-    _userId = json['userId'];
+    _userName = json['userName'];
     _date = json['date'];
     _weekDay = json['weekDay'];
     _startTime = json['startTime'];
@@ -48,7 +48,7 @@ class TimeBlockModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['userId'] = _userId;
+    data['userName'] = _userName;
     data['date'] = _date;
     data['weekDay'] = _weekDay;
     data['startTime'] = _startTime;

@@ -12,7 +12,7 @@ class _WorkState extends State<WorkInfoPage> {
       appBar: AppBar(
         title: Text('총 근무 시간', style: TextStyle(fontWeight: FontWeight.bold)),
         elevation: 0.0,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.teal.shade200,
         centerTitle: true,
         //leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
         //actions: <Widget>[

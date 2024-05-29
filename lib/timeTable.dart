@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 //import 'package:simkb/Src/Utility/Tool.dart';
 
 import '../model/timeBlockModel.dart';
-import '../model/tableWeekView.dart';
+import 'tableWeekView.dart';
 
 class TimeTablePage extends StatefulWidget {
   const TimeTablePage({super.key});
@@ -34,7 +34,7 @@ class _TimeTablePageState extends State<TimeTablePage> {
       appBar: AppBar(
         title: const Text('Home'),
         elevation: 0.0,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.teal.shade200,
         centerTitle: true,
         //leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
         actions: <Widget>[
@@ -68,21 +68,22 @@ class _TimeTablePageState extends State<TimeTablePage> {
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
             child:ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.redAccent, //background color of button
-                  side: BorderSide(width:3, color:Colors.brown), //border width and color
+                  backgroundColor: Colors.teal.shade200, //background color of button
+                  side: const BorderSide(width:3, color:Colors.brown), //border width and color
                   elevation: 3, //elevation of button
                   shape: RoundedRectangleBorder( //to set border radius to button
                       borderRadius: BorderRadius.circular(30)
                   ),
-                  padding: EdgeInsets.all(20) //content padding inside button
+                  padding: const EdgeInsets.all(20) //content padding inside button
               ),
               onPressed: (){
                 //code to execute when this button is pressed.
+
                 Navigator.of(context).pushNamed('/listemp');
               },
               child: Container(
                   alignment: Alignment.center,
-                  width: 200,
+                  width: 400,
                   child: const Text('알바생 목록', style:TextStyle(fontSize: 18, color:Colors.white)))
             )
           )
@@ -99,7 +100,7 @@ class _TimeTablePageState extends State<TimeTablePage> {
       },
       child: Container(
         decoration: const BoxDecoration(
-            color: Colors.redAccent,
+            color: Colors.teal,
             borderRadius: BorderRadius.all(Radius.circular(8))),
         child: Column(
           children: [
