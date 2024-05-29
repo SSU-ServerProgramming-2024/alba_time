@@ -30,7 +30,7 @@ class _LogInState extends State<LoginPage> {
       appBar: AppBar(
         title: const Text('Log in'),
         elevation: 0.0,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.teal.shade200,
         centerTitle: true,
         //leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
         //actions: <Widget>[
@@ -74,11 +74,12 @@ class _LogInState extends State<LoginPage> {
                                   final response = await apiService.loginAuth(idController.value.text, pwController.value.text);
                                   if (response?.statusCode == 200) {
                                     _myProfileProvider.setUserId(response!.result.userId);
+                                    _myProfileProvider.setBossno(response!.result.bossNo);
                                     Navigator.of(context).pushNamed('/timetable');
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.redAccent,
+                                    backgroundColor: Colors.teal.shade200,
                                 ),
                                 child: Container(
                                 alignment: Alignment.center,

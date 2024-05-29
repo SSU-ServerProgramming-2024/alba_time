@@ -15,7 +15,7 @@ class _ModInfoState extends State<ModInfo> {
       appBar: AppBar(
         title: Text('알바생 정보 수정'),
         elevation: 0.0,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.teal.shade200,
         centerTitle: true,
         //leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
         //actions: <Widget>[

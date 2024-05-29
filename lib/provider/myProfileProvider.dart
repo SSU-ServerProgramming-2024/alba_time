@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // 이 안에 있는 맴버 변수 값들을 상태 관리 한다.
 class MyProfileProvider extends ChangeNotifier{
   int _userId = 0;
+  int _bossNo = 0;
   String _name = "";
   int _compno = 0;
   String _com_name = "";
@@ -25,8 +26,17 @@ class MyProfileProvider extends ChangeNotifier{
     notifyListeners(); // notifyListeners 호출해 업데이트된 값을 구독자에게 알림
   }
 
+  setBossno(int bossNo){
+    _bossNo = bossNo;
+    notifyListeners();
+  }
+
   int getUserId(){
     return _userId;
+  }
+
+  int getBossNo(){
+    return _bossNo;
   }
 
   setMetaData(String name, com_name, com_loc, int compno, type, age){

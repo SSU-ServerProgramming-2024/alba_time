@@ -12,7 +12,7 @@ class Response {
 }
 
 class ApiService {
-  final String baseUrl = "http://10.27.0.4:5000";
+  final String baseUrl = "http://10.27.0.126:5000";
 
   Future<Response?> loginAuth(String id, String password) async {
     final url = Uri.parse("$baseUrl/auth/login");
@@ -56,7 +56,8 @@ class ApiService {
 
   Future<Response?> getWorkerList(int bossno) async {
     final bossnostr = bossno.toString();
-    final url = Uri.parse("$baseUrl/info/profile?bossno=$bossnostr");
+    print(bossnostr);
+    final url = Uri.parse("$baseUrl/auth/workers?bossno=$bossnostr");
 
     final response = await http.get(
         url,
@@ -67,7 +68,7 @@ class ApiService {
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      return Response(response.statusCode, EmployeeInfoModel.fromJsonList(data['worker_list']));
+      return Response(response.statusCode, data['worker_list']);
     } else {
       return Response(response.statusCode, null);
     }

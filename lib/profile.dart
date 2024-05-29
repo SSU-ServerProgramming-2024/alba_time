@@ -75,7 +75,7 @@ class _ProfileState extends State<Profile> {
       appBar: AppBar(
         title: const Text('Profile'),
         elevation: 0.0,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.teal.shade200,
         centerTitle: true,
         //leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
         //actions: <Widget>[
@@ -120,14 +120,14 @@ class _ProfileState extends State<Profile> {
                 SizedBox(height:32),
                 Container(
                     alignment: Alignment.center,
-                    color: Colors.redAccent,
+                    color: Colors.teal.shade200,
                     width: 300,
                     height: 50,
                     child: Text(_myProfileProvider.com_name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white))
                 ),
                 Container(
                     alignment: Alignment.center,
-                    color: Colors.redAccent,
+                    color: Colors.teal.shade200,
                     width: 300,
                     height: 50,
                     margin: EdgeInsets.all(50),
@@ -135,7 +135,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 Container(
                     alignment: Alignment.center,
-                    color: Colors.redAccent,
+                    color: Colors.teal.shade200,
                     width: 300,
                     height: 50,
                     child: Text(typeString(_myProfileProvider.type), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white))

@@ -12,7 +12,7 @@ class _AddInfoState extends State<Add_info> {
       appBar: AppBar(
         title: Text('add'),
         elevation: 0.0,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.teal.shade200,
         centerTitle: true,
         leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
         actions: <Widget>[

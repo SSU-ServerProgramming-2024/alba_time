@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'api/apiService.dart';
+import 'model/employeeInfoModel.dart';
+import 'provider/myProfileProvider.dart';
 
 class ListEmp extends StatefulWidget {
   @override
@@ -6,75 +11,69 @@ class ListEmp extends StatefulWidget {
 }
 
 class _ListEmpState extends State<ListEmp> {
+  late ApiService apiService;
+  late MyProfileProvider _myProfileProvider;
+
+  List<dynamic> emplist = [];
+
+  @override
+  void initState() {
+    super.initState();
+    apiService = ApiService();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _myProfileProvider = Provider.of<MyProfileProvider>(context, listen: false);
+
+      final response = await apiService.getWorkerList(_myProfileProvider.getBossNo());
+      if (response?.statusCode == 200) {
+        setState(() {
+          emplist = response?.result;
+          print(emplist);
+        });
+
+      } else {
+        print(response?.statusCode);
+        print(response?.result);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('아르바이트생 목록'),
         elevation: 0.0,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.teal.shade200,
         centerTitle: true,
-        //leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
-        //actions: <Widget>[
-        //  IconButton(icon: Icon(Icons.search), onPressed: () {}),
-        //],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             const SizedBox(height: 30),
-            Text('아르바이트생 목록', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-            SizedBox(height: 20),
-            ListView(
+            ListView.builder(
               padding: const EdgeInsets.all(8),
-              shrinkWrap: true, // ListView를 Column 안에서 사용할 때 필요
-              physics: NeverScrollableScrollPhysics(), // ListView에서 스크롤을 사용하지 않음
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // 버튼이 클릭되었을 때 수행할 작업
-                  },
-                  style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(50, 50)), // 버튼의 최소 크기 지정
-                    backgroundColor: MaterialStateProperty.all(Colors.white70), // 버튼의 배경색 지정
-                  ),
-                  child: Text('홍길동', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black)),
-                ),
-                SizedBox(height:20),
-                ElevatedButton(
-                  onPressed: () {
-                    // 버튼이 클릭되었을 때 수행할 작업
-                  },
-                  style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(50, 50)), // 버튼의 최소 크기 지정
-                    backgroundColor: MaterialStateProperty.all(Colors.white70), // 버튼의 배경색 지정
-                  ),
-                  child: Text('손흥민', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black)),
-                ),
-                SizedBox(height:20),
-                ElevatedButton(
-                  onPressed: () {
-                    // 버튼이 클릭되었을 때 수행할 작업
-                  },
-                  style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(50, 50)), // 버튼의 최소 크기 지정
-                    backgroundColor: MaterialStateProperty.all(Colors.white70), // 버튼의 배경색 지정
-                  ),
-                  child: Text('류현진', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black)),
-                ),
-                SizedBox(height:20),
-                ElevatedButton(
-                  onPressed: () {
-                    // 버튼이 클릭되었을 때 수행할 작업
-                  },
-                  style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(50, 50)), // 버튼의 최소 크기 지정
-                    backgroundColor: MaterialStateProperty.all(Colors.white70), // 버튼의 배경색 지정
-                  ),
-                  child: Text('오타니', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black)),
-                ),
-                SizedBox(height:20),
-              ],
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: emplist.length,
+              itemBuilder: (context, index) {
+                final employee = emplist[index];
+                return Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        // 버튼이 클릭되었을 때 수행할 작업
+                      },
+                      style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(Size(50, 50)), // 버튼의 최소 크기 지정
+                        backgroundColor: MaterialStateProperty.all(Colors.white70), // 버튼의 배경색 지정
+                      ),
+                      child: Text(employee['name'], style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black)),
+                    ),
+                    SizedBox(height: 20),
+                  ],
+                );
+              },
             ),
             ElevatedButton(
               onPressed: () {
@@ -83,7 +82,6 @@ class _ListEmpState extends State<ListEmp> {
               },
               child: Text('알바생 추가', style: TextStyle(color: Colors.black)),
             ),
-          //const Spacer(),
           ],
         ),
       ),
