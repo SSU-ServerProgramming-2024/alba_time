@@ -102,4 +102,22 @@ class ApiService {
       return Response(response.statusCode, null);
     }
   }
+
+  Future<Response> deleteEmployee(String employeeId) async {
+    final url = Uri.parse("$baseUrl/auth/delete/$employeeId"); // 삭제할 직원의 URL 구성
+
+    final response = await http.delete(
+        url,
+        headers: {"Content-Type": "application/json"}
+    ).timeout(
+        const Duration(seconds: 5)
+    );
+
+    if (response.statusCode == 200) {
+      return Response(response.statusCode, 'Employee deleted successfully');
+    } else {
+      //print(response.statusCode);
+      return Response(response.statusCode, json.decode(response.body)); // 에러 메시지를 포함한 응답 반환
+    }
+  }
 }
