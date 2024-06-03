@@ -18,6 +18,8 @@ class TimeTablePage extends StatefulWidget {
 }
 
 class _TimeTablePageState extends State<TimeTablePage> {
+  late List<CalendarEventData> _events;
+
   @override
   void initState() {
     super.initState();
@@ -26,6 +28,45 @@ class _TimeTablePageState extends State<TimeTablePage> {
       Tool.formatClassTableToEvents(value);
     });
     */
+    final _now = DateTime.now();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+      _events = [
+        CalendarEventData(
+            date: _now,
+            title: "이경주",
+            description: "08:00~15:00",
+            startTime: DateTime(_now.year, _now.month, _now.day, 8),
+            endTime: DateTime(_now.year, _now.month, _now.day, 15),
+            color: Colors.lightGreenAccent
+        ),
+        CalendarEventData(
+            date: _now,
+            startTime: DateTime(_now.year, _now.month, _now.day, 15),
+            endTime: DateTime(_now.year, _now.month, _now.day, 23),
+            title: "윤은미",
+            description: "15:00~23:00",
+            color: Colors.amberAccent
+        ),
+        CalendarEventData(
+            date: _now.add(Duration(days: 1)),
+            startTime: DateTime(_now.year, _now.month, _now.day, 8),
+            endTime: DateTime(_now.year, _now.month, _now.day, 15),
+            title: "이민욱",
+            description: "08:00~15:00",
+            color: Colors.redAccent
+        ),
+        CalendarEventData(
+            date: _now.add(Duration(days: 2)),
+            startTime: DateTime(_now.year, _now.month, _now.day, 8),
+            endTime: DateTime(_now.year, _now.month, _now.day, 15),
+            title: "이서현",
+            description: "08:00~15:00",
+            color: Colors.indigoAccent
+        ),
+      ];
+      });
+    });
   }
 
   @override
@@ -52,6 +93,7 @@ class _TimeTablePageState extends State<TimeTablePage> {
               child: Container(
                 height: 400,
                 child: TableWeekView(
+                  controller: EventController()..addAll(_events),
                   minDay: DateTime.now(),
                   scrollOffset: 450,
                   safeAreaOption: const SafeAreaOption(bottom: false),
@@ -93,19 +135,20 @@ class _TimeTablePageState extends State<TimeTablePage> {
 
   Widget _buildEvent(List<CalendarEventData<Object?>> events, Rect boundary) {
     if (events.isEmpty) return Container();
-    TimeBlockModel event = events.first.event as TimeBlockModel;
+    CalendarEventData event = events.first;
+
     return GestureDetector(
       onTap: () {
-        _showDetail(event);
+        //_showDetail(event);
       },
       child: Container(
-        decoration: const BoxDecoration(
-            color: Colors.teal,
-            borderRadius: BorderRadius.all(Radius.circular(8))),
+        decoration: BoxDecoration(
+            color: event.color.withOpacity(0.5) ?? Colors.teal,
+            borderRadius: const BorderRadius.all(Radius.circular(8))),
         child: Column(
           children: [
             AutoSizeText(
-              event.userName ?? "",
+              event.title ?? "",
               style: const TextStyle(color: Colors.black),
               maxLines: boundary.height < 50 ? 1 : 4,
               minFontSize: 8,
@@ -115,7 +158,7 @@ class _TimeTablePageState extends State<TimeTablePage> {
               height: boundary.height < 50 ? 5 : 10,
             ),
             AutoSizeText(
-              event.userName ?? "",
+              event.description ?? "",
               textAlign: TextAlign.center,
               style: const TextStyle(color: Colors.black),
               maxLines: boundary.height < 100 ? 1 : 2,
