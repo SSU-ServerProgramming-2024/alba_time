@@ -84,8 +84,9 @@ class _ListEmpState extends State<ListEmp> {
                 return Column(
                   children: [
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         // 버튼이 클릭되었을 때 수행할 작업
+                        await Navigator.of(context).pushNamed('/modinfopage');
                       },
                       style: ButtonStyle(
                         minimumSize: MaterialStateProperty.all(Size(50, 50)), // 버튼의 최소 크기 지정

@@ -9,6 +9,8 @@ class ModInfoPage extends StatefulWidget {
 }
 
 class _ModInfoPageState extends State<ModInfoPage> {
+  int absentcnt = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +31,7 @@ class _ModInfoPageState extends State<ModInfoPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               SizedBox(height: 50),
-              Text('홍길동', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+              Text('이경주', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
 
               SizedBox(height: 30),
               Container(
@@ -37,7 +39,7 @@ class _ModInfoPageState extends State<ModInfoPage> {
                 height: 50,
 
                 child: Container(
-                  child : Text('시작일 : 2022-10-10', style: TextStyle(fontSize: 22)),
+                  child : Text('시작일 : 2022-10-10', style: TextStyle(fontSize: 18)),
                   ),
                 ),
               SizedBox(height: 15),
@@ -57,7 +59,7 @@ class _ModInfoPageState extends State<ModInfoPage> {
                       BorderSide(color: Colors.black), // 테두리 색상
                     ),
                   ),
-                  child: Text('12000원', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  child: Text('시급  12000원', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
               ),
               SizedBox(height: 15),
@@ -78,7 +80,7 @@ class _ModInfoPageState extends State<ModInfoPage> {
                       BorderSide(color: Colors.black), // 테두리 색상
                     ),
                   ),
-                  child: const Text('총 근무 시간', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  child: const Text('총 근무 시간  56H 00M', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
               ),
               SizedBox(height: 15),
@@ -89,16 +91,22 @@ class _ModInfoPageState extends State<ModInfoPage> {
                   children: <Widget>[
                     ElevatedButton(
                       onPressed: () {
-                        // Handle button press
+                        setState(() {
+                          absentcnt--;
+                        });
                       },
                       child: const Text('-'),
                     ),
                     const SizedBox(width: 75),
                     const Text('결근 횟수', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    const SizedBox(width: 10),
+                    Text(absentcnt.toString(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                     const SizedBox(width: 75),
                     ElevatedButton(
                       onPressed: () {
-                        // Handle button press
+                        setState(() {
+                          absentcnt++;
+                        });
                       },
                       child: Text('+'),
                     ),

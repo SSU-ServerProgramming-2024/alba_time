@@ -12,7 +12,7 @@ class Response {
 }
 
 class ApiService {
-  final String baseUrl = "http://10.27.0.126:5000";
+  final String baseUrl = "http://10.27.0.245:5000";
 
   Future<Response?> loginAuth(String id, String password) async {
     final url = Uri.parse("$baseUrl/auth/login");

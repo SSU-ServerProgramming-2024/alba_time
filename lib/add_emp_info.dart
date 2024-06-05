@@ -94,7 +94,7 @@ class _AddInfoPageState extends State<AddInfoPage> {
                       hintText: '근무 시작 날짜를 입력하세요.',
                       border: OutlineInputBorder(),
                     ),
-                    keyboardType: TextInputType.datetime,
+                    keyboardType: TextInputType.text,
                   ),
                 ),
                 Container(
